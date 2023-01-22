@@ -5,11 +5,24 @@
 *.so
 *.dylib
 
-# Test binary, built with `go test -c`
-*.test
+# idea folders
+.idea/
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+# ignore binaries and vendoring
+tinkoff_bot_public
+debug
+/vendor
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+
+# other ignores
+.tags*
+/log
+/*/log
+/*/*/log
+public/assets
+tmp
+*.coverprofile
+/bin
+.vscode/launch.json
+ui/.DS_Store
+.DS_Store

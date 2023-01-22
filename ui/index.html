@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script>
+        window.onload = function () {
+
+            //Better to construct options first and then pass it as a parameter
+            var options = {
+                title: {
+                    text: "Market Chart"
+                },
+                animationEnabled: false,
+                exportEnabled: true,
+                data: [
+                    {
+                        type: "spline", //change it to line, area, column, pie, etc
+                        name: "Market High",
+                        showInLegend: true,
+                        dataPoints: [
+                        {{range .MarketHigh}}
+                        { x: {{.D1}}, y: {{.V1}} },
+                        {{end}}
+                        ]
+                    },
+                    {
+                        type: "spline", //change it to line, area, column, pie, etc
+                        name: "Market Low",
+                        showInLegend: true,
+                        dataPoints: [
+                        {{range .MarketLow}}
+                        { x: {{.D1}}, y: {{.V1}} },
+                        {{end}}
+                        ]
+                    },
+                    {
+                        type: "rangeArea",
+                        name: "Calc price range",
+                        howInLegend: true,
+                        showInLegend: true,     
+                        dataPoints: [
+                            {{range .CalcPrice}}
+                             { x: {{.D1}}, y: [{{.Buy}}, {{.Sell}}] },
+                            {{end}}
+                        ]
+                    }
+                ]
+            };
+            $("#chartContainer").CanvasJSChart(options);
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.canvasjs.min.js"></script>
+    <!-- <h1>{{.PageTitle}}</h1> -->
+
+</body>
+
+</html>
